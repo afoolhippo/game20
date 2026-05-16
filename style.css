@@ -62,8 +62,6 @@ body{
   image-rendering:pixelated;
 
   object-fit:contain;
-
-  margin-top:0;
 }
 
 .titleText{
@@ -306,7 +304,15 @@ body.danceFlash #gameScreen::after{
 .resultBox h2{
   font-size:38px;
 
+  margin-bottom:6px;
+}
+
+#rankStars{
+  font-size:30px;
+
   margin-bottom:18px;
+
+  color:#5b2aa0;
 }
 
 .finalScore{

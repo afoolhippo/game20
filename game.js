@@ -34,6 +34,7 @@ const timeLeftEl = document.getElementById('timeLeft');
 
 const finalScoreEl = document.getElementById('finalScore');
 const rankTextEl = document.getElementById('rankText');
+const rankStarsEl = document.getElementById('rankStars');
 
 const judgeTextEl = document.getElementById('judgeText');
 const danceTimeEl = document.getElementById('danceTime');
@@ -129,20 +130,24 @@ function endGame(){
   finalScoreEl.textContent = score;
 
   let rank = 'イギーなダンス';
+  let stars = '★☆☆';
   let frame = 0;
 
   if(score >= 40){
 
     rank = 'イビツなダンス';
+    stars = '★★★';
     frame = 8;
 
   }else if(score >= 20){
 
     rank = 'イキなダンス';
+    stars = '★★☆';
     frame = 4;
   }
 
   rankTextEl.textContent = rank;
+  rankStarsEl.textContent = stars;
 
   drawResultFrame(frame);
 
