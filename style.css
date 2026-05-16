@@ -294,20 +294,22 @@ body.danceFlash #gameScreen::after{
 /* 結果 */
 
 #resultScreen{
+
   justify-content:flex-start;
   align-items:center;
 
   padding:0;
+
+  padding-top:0;
 }
 
 .resultBox{
-  width:100%;
 
-  border:4px solid #5b2aa0;
+  width:100%;
 
   background:#ffffff;
 
-  padding:10px 16px 20px;
+  padding:0 16px 20px;
 
   text-align:center;
 }
