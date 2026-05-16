@@ -64,12 +64,34 @@ body{
   object-fit:contain;
 }
 
-.titleText{
-  margin-top:20px;
+.titleRule{
+  margin-top:18px;
+
+  text-align:center;
+
+  line-height:1.8;
 
   font-size:18px;
 
   color:#5b2aa0;
+}
+
+#startBtn{
+  margin-top:20px;
+
+  width:100%;
+
+  padding:14px;
+
+  border:3px solid #5b2aa0;
+
+  background:#efe5ff;
+
+  color:#5b2aa0;
+
+  font-size:18px;
+
+  font-family:'DotGothic16', monospace;
 }
 
 /* ゲーム */
@@ -190,7 +212,7 @@ body{
 
   left:50%;
 
-  bottom:170px;
+  bottom:130px;
 
   transform:translateX(-50%);
 
@@ -272,10 +294,10 @@ body.danceFlash #gameScreen::after{
 /* 結果 */
 
 #resultScreen{
-  justify-content:center;
+  justify-content:flex-start;
   align-items:center;
 
-  padding:20px;
+  padding:12px 20px 20px;
 }
 
 .resultBox{
@@ -285,7 +307,7 @@ body.danceFlash #gameScreen::after{
 
   background:#ffffff;
 
-  padding:24px 16px;
+  padding:20px 16px;
 
   text-align:center;
 }
@@ -298,7 +320,7 @@ body.danceFlash #gameScreen::after{
 
   border:3px solid #5b2aa0;
 
-  margin-bottom:20px;
+  margin-bottom:16px;
 }
 
 .resultBox h2{

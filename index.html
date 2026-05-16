@@ -3,18 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
-
   <title>歪なダンス</title>
-
   <link rel="stylesheet" href="style.css">
-
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 </head>
 <body>
 
 <div id="app">
-
-  <!-- タイトル -->
 
   <section id="titleScreen" class="screen active">
 
@@ -24,13 +19,17 @@
       alt="歪なダンス"
     >
 
-    <div class="titleText">
-      タイトル画像をタップ
+    <div class="titleRule">
+      落ちてくる矢印を<br>
+      タイミングよく押せ。<br>
+      サビは歪み始める。
     </div>
 
-  </section>
+    <button id="startBtn">
+      タップしてスタート
+    </button>
 
-  <!-- ゲーム -->
+  </section>
 
   <section id="gameScreen" class="screen">
 
@@ -75,8 +74,6 @@
     </div>
 
   </section>
-
-  <!-- 結果 -->
 
   <section id="resultScreen" class="screen">
 

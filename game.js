@@ -21,7 +21,7 @@ const titleScreen = document.getElementById('titleScreen');
 const gameScreen = document.getElementById('gameScreen');
 const resultScreen = document.getElementById('resultScreen');
 
-const titleImage = document.getElementById('titleImage');
+const startBtn = document.getElementById('startBtn');
 
 const retryBtn = document.getElementById('retryBtn');
 const homeBtn = document.getElementById('homeBtn');
@@ -233,7 +233,7 @@ function updateNotes(dt, sec){
     if(
       !note.hit &&
       !note.miss &&
-      note.y > judgeY + 90
+      note.y > judgeY + 72
     ){
 
       note.miss = true;
@@ -516,7 +516,7 @@ function handleInput(lane){
     }
   });
 
-  if(best && bestDist <= 100){
+  if(best && bestDist <= 72){
 
     best.hit = true;
 
@@ -524,7 +524,7 @@ function handleInput(lane){
 
     let add = 1;
 
-    if(bestDist <= 45){
+    if(bestDist <= 28){
 
       add = 3;
 
@@ -616,7 +616,7 @@ function loop(now){
     requestAnimationFrame(loop);
 }
 
-titleImage.addEventListener(
+startBtn.addEventListener(
   'click',
   startGame
 );
