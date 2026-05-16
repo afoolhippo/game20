@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>歪なダンス</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="app">
+
+  <section id="titleScreen" class="screen active">
+    <div class="titleBox">
+      <h1>歪なダンス</h1>
+      <p>
+        落ちてくる矢印を<br>
+        タイミングよく押せ！
+      </p>
+      <button id="startBtn">タップしてスタート</button>
+    </div>
+  </section>
+
+  <section id="gameScreen" class="screen">
+    <div class="hud">
+      <div>SCORE <span id="score">0</span></div>
+      <div>COMBO <span id="combo">0</span></div>
+      <div>残り <span id="timeLeft">60</span>秒</div>
+    </div>
+
+    <div id="danceTime">DANCE TIME</div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="judgeText"></div>
+
+    <div class="controls">
+      <button class="tapBtn" data-lane="0">←</button>
+      <button class="tapBtn" data-lane="1">↓</button>
+      <button class="tapBtn" data-lane="2">↑</button>
+      <button class="tapBtn" data-lane="3">→</button>
+    </div>
+  </section>
+
+  <section id="resultScreen" class="screen">
+    <div class="resultBox">
+      <h2 id="rankText">歪</h2>
+      <p id="resultComment">変なステップだった。</p>
+
+      <div class="finalScore">
+        SCORE <span id="finalScore">0</span>
+      </div>
+
+      <div class="resultButtons">
+        <button id="shareBtn">Xでシェア</button>
+        <button id="retryBtn">もう1回遊ぶ</button>
+        <button id="homeBtn">カバゲーセンへ</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="game.js"></script>
+
+</body>
+</html>
