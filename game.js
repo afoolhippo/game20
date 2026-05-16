@@ -22,6 +22,7 @@ const gameScreen = document.getElementById('gameScreen');
 const resultScreen = document.getElementById('resultScreen');
 
 const startBtn = document.getElementById('startBtn');
+const titleImage = document.getElementById('titleImage');
 
 const retryBtn = document.getElementById('retryBtn');
 const homeBtn = document.getElementById('homeBtn');
@@ -158,13 +159,11 @@ function drawResultFrame(frame){
 
   if(!dancerImg.complete) return;
 
-  const cols = 3;
-
   const sw = dancerImg.width / 3;
   const sh = dancerImg.height / 3;
 
-  const sx = (frame % cols) * sw;
-  const sy = Math.floor(frame / cols) * sh;
+  const sx = (frame % 3) * sw;
+  const sy = Math.floor(frame / 3) * sh;
 
   resultCanvas.width = 160;
   resultCanvas.height = 160;
@@ -358,57 +357,20 @@ function drawJudgeLine(){
 
   const y = getJudgeY();
 
-  const laneW = canvas.width / 4;
-
   ctx.fillStyle = '#5b2aa0';
 
   ctx.fillRect(
     0,
-    y - 3,
+    y - 4,
     canvas.width,
-    6
+    8
   );
-
-  for(let i = 0; i < 4; i++){
-
-    ctx.fillStyle = '#ffffff';
-
-    ctx.fillRect(
-      i * laneW + 10,
-      y - 22,
-      laneW - 20,
-      44
-    );
-
-    ctx.strokeStyle = '#5b2aa0';
-
-    ctx.lineWidth = 3;
-
-    ctx.strokeRect(
-      i * laneW + 10,
-      y - 22,
-      laneW - 20,
-      44
-    );
-
-    ctx.fillStyle = '#5b2aa0';
-
-    ctx.font = 'bold 28px sans-serif';
-
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-
-    ctx.fillText(
-      LANES[i],
-      i * laneW + laneW / 2,
-      y
-    );
-  }
 }
 
 function drawNotes(sec){
 
   const laneW = canvas.width / 4;
+  const judgeY = getJudgeY();
 
   notes.forEach(note => {
 
@@ -425,7 +387,23 @@ function drawNotes(sec){
 
     const y = note.y;
 
-    ctx.fillStyle = '#5b2aa0';
+    const dist =
+      Math.abs(y - judgeY);
+
+    const isTiming =
+      dist <= 72;
+
+    const blinkOn =
+      Math.floor(sec * 12) % 2 === 0;
+
+    if(isTiming && blinkOn){
+
+      ctx.fillStyle = '#ff4fd8';
+
+    }else{
+
+      ctx.fillStyle = '#5b2aa0';
+    }
 
     ctx.fillRect(
       x - 30,
@@ -434,9 +412,11 @@ function drawNotes(sec){
       60
     );
 
-    ctx.strokeStyle = '#ffffff';
+    ctx.strokeStyle = isTiming
+      ? '#ff4fd8'
+      : '#ffffff';
 
-    ctx.lineWidth = 4;
+    ctx.lineWidth = isTiming ? 5 : 4;
 
     ctx.strokeRect(
       x - 30,
@@ -621,9 +601,17 @@ startBtn.addEventListener(
   startGame
 );
 
-retryBtn.addEventListener(
+titleImage.addEventListener(
   'click',
   startGame
+);
+
+retryBtn.addEventListener(
+  'click',
+  () => {
+
+    showScreen(titleScreen);
+  }
 );
 
 backBtn.addEventListener(
