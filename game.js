@@ -12,10 +12,10 @@ bgm.loop = false;
 bgm.volume = 0.75;
 
 const seGood = new Audio('se_good.mp3');
-seGood.volume = 0.5;
+seGood.volume = 0.28;
 
 const seBad = new Audio('se_bad.mp3');
-seBad.volume = 0.35;
+seBad.volume = 0.18;
 
 const titleScreen = document.getElementById('titleScreen');
 const gameScreen = document.getElementById('gameScreen');
