@@ -1,7 +1,7 @@
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
+  box-sizing:border-box;
   -webkit-tap-highlight-color:transparent;
 }
 
@@ -10,8 +10,10 @@ body{
   width:100%;
   height:100%;
   overflow:hidden;
+
   background:#ffffff;
   color:#5b2aa0;
+
   font-family:'DotGothic16', monospace;
 }
 
@@ -22,17 +24,22 @@ body{
 #app{
   width:100vw;
   height:100dvh;
+
   display:flex;
   justify-content:center;
   align-items:center;
+
   background:#ffffff;
 }
 
 .screen{
   display:none;
+
   width:100%;
   height:100%;
+
   max-width:430px;
+
   position:relative;
 }
 
@@ -43,118 +50,189 @@ body{
 /* タイトル */
 
 #titleScreen{
-  justify-content:center;
+  flex-direction:column;
   align-items:center;
-  padding:20px;
+
+  padding:0 16px 20px;
 }
 
-.titleBox{
+#titleImage{
   width:100%;
-  border:4px solid #5b2aa0;
-  background:#ffffff;
-  padding:28px 18px;
-  text-align:center;
+
+  image-rendering:pixelated;
+
+  object-fit:contain;
+
+  margin-top:0;
 }
 
-.titleBox h1{
-  font-size:48px;
-  line-height:1.1;
-  margin-bottom:24px;
-  color:#5b2aa0;
-}
+.titleText{
+  margin-top:20px;
 
-.titleBox p{
   font-size:18px;
-  line-height:1.7;
-  margin-bottom:24px;
-}
 
-#startBtn{
-  width:100%;
-  padding:14px;
-  border:3px solid #5b2aa0;
-  background:#efe5ff;
   color:#5b2aa0;
-  font-family:'DotGothic16', monospace;
-  font-size:18px;
 }
 
 /* ゲーム */
 
 #gameScreen{
   flex-direction:column;
+
   padding:8px;
+}
+
+#backBtn{
+  position:absolute;
+
+  top:8px;
+  right:8px;
+
+  z-index:20;
+
+  border:3px solid #5b2aa0;
+
+  background:#efe5ff;
+
+  color:#5b2aa0;
+
+  padding:6px 10px;
+
+  font-size:12px;
+
+  font-family:'DotGothic16', monospace;
 }
 
 .hud{
   width:100%;
+
   display:flex;
   justify-content:space-between;
-  font-size:14px;
-  padding:4px 2px 8px;
-  color:#5b2aa0;
+
+  gap:6px;
+
+  padding-top:44px;
+  padding-bottom:8px;
 }
 
-#danceTime{
-  height:28px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:22px;
-  color:#5b2aa0;
-  opacity:0;
+.hudItem{
+  flex:1;
+
+  text-align:center;
+
+  border:3px solid #5b2aa0;
+
+  background:#efe5ff;
+
+  padding:6px 2px;
+
+  font-size:13px;
 }
 
-#danceTime.active{
-  animation:blink .35s steps(2,start) infinite;
-}
+.hudItem span{
+  display:block;
 
-@keyframes blink{
-  0%{opacity:1;}
-  100%{opacity:.15;}
+  margin-top:4px;
+
+  font-size:24px;
 }
 
 #gameCanvas{
   width:100%;
-  height:calc(100dvh - 190px);
+
+  height:calc(100dvh - 220px);
+
   min-height:380px;
+
   border:4px solid #5b2aa0;
+
   background:#ffffff;
+
   image-rendering:pixelated;
+}
+
+#danceTime{
+  position:absolute;
+
+  top:42%;
+
+  left:50%;
+
+  transform:translate(-50%,-50%);
+
+  font-size:44px;
+
+  color:#5b2aa0;
+
+  opacity:0;
+
+  z-index:12;
+
+  pointer-events:none;
+}
+
+#danceTime.active{
+  animation:danceBlink .18s steps(2,start) infinite;
+}
+
+@keyframes danceBlink{
+  0%{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+  }
+
+  100%{
+    opacity:.12;
+    transform:translate(-50%,-50%) scale(1.08);
+  }
 }
 
 #judgeText{
   position:absolute;
+
   left:50%;
-  bottom:112px;
+
+  bottom:170px;
+
   transform:translateX(-50%);
-  font-size:32px;
+
+  font-size:40px;
+
   color:#5b2aa0;
-  height:40px;
+
+  z-index:15;
+
   pointer-events:none;
-  z-index:5;
 }
 
 .controls{
   width:100%;
+
   display:grid;
   grid-template-columns:repeat(4,1fr);
+
   gap:6px;
+
   margin-top:8px;
-  padding-bottom:env(safe-area-inset-bottom);
 }
 
 .tapBtn{
-  height:58px;
+  height:60px;
+
   border:3px solid #5b2aa0;
+
   background:#efe5ff;
+
   color:#5b2aa0;
-  font-family:'DotGothic16', monospace;
+
   font-size:30px;
+
+  font-family:'DotGothic16', monospace;
 }
 
 .tapBtn:active{
   transform:translateY(2px);
+
   background:#d8c1ff;
 }
 
@@ -163,14 +241,21 @@ body{
 body.danceFlash #gameScreen::before,
 body.danceFlash #gameScreen::after{
   content:"";
+
   position:absolute;
-  top:60px;
-  bottom:90px;
-  width:10px;
+
+  top:0;
+  bottom:0;
+
+  width:18px;
+
   background:#b68cff;
-  animation:flash .35s steps(2,start) infinite;
+
+  animation:flash .18s steps(2,start) infinite;
+
   pointer-events:none;
-  z-index:4;
+
+  z-index:2;
 }
 
 body.danceFlash #gameScreen::before{
@@ -182,8 +267,8 @@ body.danceFlash #gameScreen::after{
 }
 
 @keyframes flash{
-  0%{opacity:.5;}
-  100%{opacity:.1;}
+  0%{opacity:.6;}
+  100%{opacity:.05;}
 }
 
 /* 結果 */
@@ -191,46 +276,64 @@ body.danceFlash #gameScreen::after{
 #resultScreen{
   justify-content:center;
   align-items:center;
+
   padding:20px;
 }
 
 .resultBox{
   width:100%;
+
   border:4px solid #5b2aa0;
+
   background:#ffffff;
+
   padding:24px 16px;
+
   text-align:center;
 }
 
-.resultBox h2{
-  font-size:42px;
-  color:#5b2aa0;
-  margin-bottom:12px;
+#resultCanvas{
+  width:160px;
+  height:160px;
+
+  image-rendering:pixelated;
+
+  border:3px solid #5b2aa0;
+
+  margin-bottom:20px;
 }
 
-.resultBox p{
-  font-size:18px;
-  line-height:1.6;
-  margin-bottom:20px;
+.resultBox h2{
+  font-size:38px;
+
+  margin-bottom:18px;
 }
 
 .finalScore{
   font-size:24px;
+
   margin-bottom:20px;
 }
 
 .resultButtons{
   display:flex;
   flex-direction:column;
+
   gap:8px;
 }
 
 .resultButtons button{
   width:100%;
+
   padding:12px;
+
   border:3px solid #5b2aa0;
+
   background:#efe5ff;
+
   color:#5b2aa0;
-  font-family:'DotGothic16', monospace;
+
   font-size:17px;
+
+  font-family:'DotGothic16', monospace;
 }
