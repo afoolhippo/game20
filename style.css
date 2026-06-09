@@ -47,7 +47,9 @@ body{
   display:flex;
 }
 
+/* ---------------- */
 /* タイトル */
+/* ---------------- */
 
 #titleScreen{
   flex-direction:column;
@@ -65,6 +67,7 @@ body{
 }
 
 .titleRule{
+
   margin-top:18px;
 
   text-align:center;
@@ -77,6 +80,7 @@ body{
 }
 
 #startBtn{
+
   margin-top:20px;
 
   width:100%;
@@ -94,7 +98,9 @@ body{
   font-family:'DotGothic16', monospace;
 }
 
+/* ---------------- */
 /* ゲーム */
+/* ---------------- */
 
 #gameScreen{
   flex-direction:column;
@@ -103,6 +109,7 @@ body{
 }
 
 #backBtn{
+
   position:absolute;
 
   top:8px;
@@ -124,9 +131,11 @@ body{
 }
 
 .hud{
+
   width:100%;
 
   display:flex;
+
   justify-content:space-between;
 
   gap:6px;
@@ -136,6 +145,7 @@ body{
 }
 
 .hudItem{
+
   flex:1;
 
   text-align:center;
@@ -150,6 +160,7 @@ body{
 }
 
 .hudItem span{
+
   display:block;
 
   margin-top:4px;
@@ -158,6 +169,7 @@ body{
 }
 
 #gameCanvas{
+
   width:100%;
 
   height:calc(100dvh - 220px);
@@ -171,7 +183,12 @@ body{
   image-rendering:pixelated;
 }
 
+/* ---------------- */
+/* DANCE TIME */
+/* ---------------- */
+
 #danceTime{
+
   position:absolute;
 
   top:42%;
@@ -196,6 +213,7 @@ body{
 }
 
 @keyframes danceBlink{
+
   0%{
     opacity:1;
     transform:translate(-50%,-50%) scale(1);
@@ -208,6 +226,7 @@ body{
 }
 
 #judgeText{
+
   position:absolute;
 
   left:50%;
@@ -225,10 +244,16 @@ body{
   pointer-events:none;
 }
 
+/* ---------------- */
+/* ボタン */
+/* ---------------- */
+
 .controls{
+
   width:100%;
 
   display:grid;
+
   grid-template-columns:repeat(4,1fr);
 
   gap:6px;
@@ -237,6 +262,7 @@ body{
 }
 
 .tapBtn{
+
   height:60px;
 
   border:3px solid #5b2aa0;
@@ -251,15 +277,19 @@ body{
 }
 
 .tapBtn:active{
+
   transform:translateY(2px);
 
   background:#d8c1ff;
 }
 
-/* ダンスタイム */
+/* ---------------- */
+/* DANCE FLASH */
+/* ---------------- */
 
 body.danceFlash #gameScreen::before,
 body.danceFlash #gameScreen::after{
+
   content:"";
 
   position:absolute;
@@ -287,30 +317,48 @@ body.danceFlash #gameScreen::after{
 }
 
 @keyframes flash{
-  0%{opacity:.6;}
-  100%{opacity:.05;}
+
+  0%{
+    opacity:.6;
+  }
+
+  100%{
+    opacity:.05;
+  }
 }
 
+/* ---------------- */
 /* 結果 */
+/* ---------------- */
 
 #resultScreen{
+
+  flex-direction:column;
+
   justify-content:flex-start;
+
   align-items:center;
 
   padding:0;
+
+  overflow-y:auto;
 }
 
 .resultBox{
+
   width:100%;
 
   background:#ffffff;
 
   padding:0 16px 20px;
 
+  margin-top:0;
+
   text-align:center;
 }
 
 #resultCanvas{
+
   width:150px;
   height:150px;
 
@@ -318,16 +366,18 @@ body.danceFlash #gameScreen::after{
 
   border:3px solid #5b2aa0;
 
-  margin-bottom:12px;
+  margin-bottom:8px;
 }
 
 .resultBox h2{
+
   font-size:36px;
 
   margin-bottom:4px;
 }
 
 #rankStars{
+
   font-size:28px;
 
   margin-bottom:12px;
@@ -336,22 +386,30 @@ body.danceFlash #gameScreen::after{
 }
 
 .finalScore{
+
   font-size:24px;
 
   margin-bottom:14px;
 }
 
+/* ---------------- */
+/* ランキングボタン */
+/* ---------------- */
+
 .resultButtons{
+
   width:min(92%,360px);
 
+  margin:8px auto 0;
+
   display:grid;
+
   grid-template-columns:repeat(2,1fr);
 
   gap:10px;
 
-  margin:8px auto 0;
-
   opacity:1;
+
   transform:translateY(0);
 
   transition:
@@ -360,13 +418,18 @@ body.danceFlash #gameScreen::after{
 }
 
 .resultButtons.hidden{
+
   opacity:0;
+
   transform:translateY(10px);
+
   pointer-events:none;
 }
 
 .resultButton{
+
   width:100%;
+
   min-height:56px;
 
   padding:8px 6px;
