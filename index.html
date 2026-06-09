@@ -13,8 +13,6 @@
 
 <div id="app">
 
-  <!-- タイトル -->
-
   <section id="titleScreen" class="screen active">
 
     <img
@@ -34,8 +32,6 @@
     </button>
 
   </section>
-
-  <!-- ゲーム -->
 
   <section id="gameScreen" class="screen">
 
@@ -81,8 +77,6 @@
 
   </section>
 
-  <!-- 結果 -->
-
   <section id="resultScreen" class="screen">
 
     <div class="resultBox">
@@ -102,17 +96,21 @@
         <span id="finalScore">0</span>
       </div>
 
-      <div class="resultButtons">
+      <div id="resultButtons" class="resultButtons hidden">
 
-        <button id="shareBtn">
+        <button id="shareBtn" class="resultButton">
           Xでシェア
         </button>
 
-        <button id="retryBtn">
+        <button id="registerBtn" class="resultButton">
+          記録を登録
+        </button>
+
+        <button id="retryBtn" class="resultButton">
           もう1回遊ぶ
         </button>
 
-        <button id="homeBtn">
+        <button id="homeBtn" class="resultButton">
           カバゲーセンへ
         </button>
 
@@ -124,7 +122,8 @@
 
 </div>
 
-<script src="game.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="game.js?v=20260609-1"></script>
 
 </body>
 </html>

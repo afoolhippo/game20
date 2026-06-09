@@ -294,17 +294,13 @@ body.danceFlash #gameScreen::after{
 /* 結果 */
 
 #resultScreen{
-
   justify-content:flex-start;
   align-items:center;
 
   padding:0;
-
-  padding-top:0;
 }
 
 .resultBox{
-
   width:100%;
 
   background:#ffffff;
@@ -315,26 +311,26 @@ body.danceFlash #gameScreen::after{
 }
 
 #resultCanvas{
-  width:160px;
-  height:160px;
+  width:150px;
+  height:150px;
 
   image-rendering:pixelated;
 
   border:3px solid #5b2aa0;
 
-  margin-bottom:16px;
+  margin-bottom:12px;
 }
 
 .resultBox h2{
-  font-size:38px;
+  font-size:36px;
 
-  margin-bottom:6px;
+  margin-bottom:4px;
 }
 
 #rankStars{
-  font-size:30px;
+  font-size:28px;
 
-  margin-bottom:18px;
+  margin-bottom:12px;
 
   color:#5b2aa0;
 }
@@ -342,20 +338,38 @@ body.danceFlash #gameScreen::after{
 .finalScore{
   font-size:24px;
 
-  margin-bottom:20px;
+  margin-bottom:14px;
 }
 
 .resultButtons{
-  display:flex;
-  flex-direction:column;
+  width:min(92%,360px);
 
-  gap:8px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+
+  gap:10px;
+
+  margin:8px auto 0;
+
+  opacity:1;
+  transform:translateY(0);
+
+  transition:
+    opacity .35s ease,
+    transform .35s ease;
 }
 
-.resultButtons button{
-  width:100%;
+.resultButtons.hidden{
+  opacity:0;
+  transform:translateY(10px);
+  pointer-events:none;
+}
 
-  padding:12px;
+.resultButton{
+  width:100%;
+  min-height:56px;
+
+  padding:8px 6px;
 
   border:3px solid #5b2aa0;
 

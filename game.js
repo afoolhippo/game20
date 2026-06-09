@@ -1,5 +1,19 @@
 'use strict';
 
+const GAME_ID = 'game20';
+const GAME_TITLE = '歪なダンス';
+
+const SUPABASE_URL =
+  'https://gmncxnybsovlallxgnkd.supabase.co';
+
+const SUPABASE_ANON_KEY =
+  'sb_publishable_ly3h5OhL8HDSHhYdmJq_Fw_9pG3mhla';
+
+const kabaDb = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
 const GAME_TIME = 60;
 
 const LANES = ['←','↓','↑','→'];
@@ -27,6 +41,8 @@ const titleImage = document.getElementById('titleImage');
 const retryBtn = document.getElementById('retryBtn');
 const homeBtn = document.getElementById('homeBtn');
 const shareBtn = document.getElementById('shareBtn');
+const registerBtn = document.getElementById('registerBtn');
+const resultButtons = document.getElementById('resultButtons');
 const backBtn = document.getElementById('backBtn');
 
 const scoreEl = document.getElementById('score');
@@ -62,6 +78,9 @@ let nextSpawn = 0;
 
 let judgeTimer = null;
 
+let lastRankTitle = 'イギーなダンス';
+let scoreRegistered = false;
+
 function resizeCanvas(){
 
   const rect = canvas.getBoundingClientRect();
@@ -85,6 +104,27 @@ function isDanceTime(sec){
   return sec >= 30 && sec <= 50;
 }
 
+function resetRegisterButton(){
+
+  scoreRegistered = false;
+
+  registerBtn.disabled = false;
+  registerBtn.textContent = '記録を登録';
+
+  resultButtons.classList.add('hidden');
+}
+
+function showResultButtonsLater(){
+
+  resultButtons.classList.add('hidden');
+
+  setTimeout(() => {
+
+    resultButtons.classList.remove('hidden');
+
+  },1500);
+}
+
 function startGame(){
 
   showScreen(gameScreen);
@@ -100,6 +140,8 @@ function startGame(){
   comboEl.textContent = 0;
 
   judgeTextEl.textContent = '';
+
+  resetRegisterButton();
 
   startTime = performance.now();
   lastTime = startTime;
@@ -147,12 +189,16 @@ function endGame(){
     frame = 4;
   }
 
+  lastRankTitle = rank;
+
   rankTextEl.textContent = rank;
   rankStarsEl.textContent = stars;
 
   drawResultFrame(frame);
 
   showScreen(resultScreen);
+
+  showResultButtonsLater();
 }
 
 function drawResultFrame(frame){
@@ -165,12 +211,12 @@ function drawResultFrame(frame){
   const sx = (frame % 3) * sw;
   const sy = Math.floor(frame / 3) * sh;
 
-  resultCanvas.width = 160;
-  resultCanvas.height = 160;
+  resultCanvas.width = 150;
+  resultCanvas.height = 150;
 
   resultCtx.imageSmoothingEnabled = false;
 
-  resultCtx.clearRect(0,0,160,160);
+  resultCtx.clearRect(0,0,150,150);
 
   resultCtx.drawImage(
     dancerImg,
@@ -180,8 +226,8 @@ function drawResultFrame(frame){
     sh,
     0,
     0,
-    160,
-    160
+    150,
+    150
   );
 }
 
@@ -596,6 +642,54 @@ function loop(now){
     requestAnimationFrame(loop);
 }
 
+async function registerScore(){
+
+  if(scoreRegistered){
+
+    alert('この記録は登録済みです');
+
+    return;
+  }
+
+  const nickname = prompt(
+    'ニックネームを入力してね',
+    '匿名カバ'
+  );
+
+  if(!nickname) return;
+
+  registerBtn.disabled = true;
+  registerBtn.textContent = '登録中...';
+
+  const { error } = await kabaDb
+    .from('kaba_scores')
+    .insert({
+      game_id: GAME_ID,
+      game_title: GAME_TITLE,
+      nickname: nickname,
+      rank_title: lastRankTitle,
+      score: score
+    });
+
+  if(error){
+
+    console.error(error);
+
+    registerBtn.disabled = false;
+    registerBtn.textContent = '記録を登録';
+
+    alert('登録に失敗しました');
+
+    return;
+  }
+
+  scoreRegistered = true;
+
+  registerBtn.textContent = '登録済み';
+
+  alert('記録を登録しました！');
+}
+
 startBtn.addEventListener(
   'click',
   startGame
@@ -661,6 +755,11 @@ https://afoolhippo.github.io/game20/
       '_blank'
     );
   }
+);
+
+registerBtn.addEventListener(
+  'click',
+  registerScore
 );
 
 document
